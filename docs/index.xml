@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docs on CS559: Workbook 11&#43;12</title>
+    <link>/docs/</link>
+    <description>Recent content in Docs on CS559: Workbook 11&#43;12</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>/docs/hints/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/hints/</guid>
+      <description>Some Hints for Graphics Town Making Behavior Use the tick method of GrObject to animate things. The basics were introduced in workbook 7. You can put the behavior into a class (like the example does with SpinCube. Over the later workbooks, you saw the use of tricks like adding methods to the objects after the object is created. SimpleBehaviors.js in the Framework folder has an example. Hidden in workbook 10, page 2 are more examples (the spinY function adds a method to an object, but the code to blink an object also adds a tick method, and takes advantage of the non-lexical this in JavaScript.</description>
+    </item>
+    
+  </channel>
+</rss>

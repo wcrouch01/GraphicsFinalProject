@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hints | CS559: Workbook 11&#43;12</title>
+
+
+<link rel="stylesheet" href="/book.min.6c7317d2e8552a0ac3ea8fd4ba500c3dfb1cc9c74e7afd73eee6d729751fad30.css">
+
+
+
+
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+
+
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="">CS559: Workbook 11&#43;12</a>
+</h2>
+
+
+
+
+
+
+    
+  
+  
+  
+
+  <style>
+  nav ul a[href$="\2f docs\2fhints\2f "] {
+      color: #004ed0;
+  }
+  </style>
+
+<ul>
+<li><a href="/"><strong>Introduction</strong></a></li>
+<li><a href="/docs/hints/">Hints</a></li>
+<li><a href="/for_students/grtown.html">grtown.html</a></li>
+</ul>
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Hints</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="some-hints-for-graphics-town">Some Hints for Graphics Town</h1>
+
+<h2 id="making-behavior">Making Behavior</h2>
+
+<p>Use the <code>tick</code> method of <code>GrObject</code> to animate things. The basics were introduced in workbook 7. You can put the behavior into a class (like the example does with <code>SpinCube</code>. Over the later workbooks, you saw the use of tricks like adding methods to the objects after the object is created. <code>SimpleBehaviors.js</code> in the Framework folder has an example. Hidden in workbook 10, page 2 are more examples (the <code>spinY</code> function adds a method to an object, but the code to blink an object also adds a <code>tick</code> method, and takes advantage of the non-lexical <code>this</code> in JavaScript. See <code>2-2-uniforms.js</code> in workbook 10.</p>
+
+<p>For more complicated behaviors, you will need to keep track of time. The <code>tick</code> method is given an amount of time (delta) that things advance, but isn&rsquo;t given the actual resulting time. You may need to keep a variable inside of the object that gets incremented each time.</p>
+
+<p>We <strong>do not recommend you use THREE.JS&rsquo;s animation system</strong> - it is complicated to figure out, and will not work well with the Graphics Town framework (it is unclear how to integrate the &ldquo;play&rdquo; loops of each action with the animation loop of <code>GrWorld</code>).</p>
+
+<h2 id="object-lookat">Object LookAt</h2>
+
+<p>The UI code allows objects to be &ldquo;looked at&rdquo; (you select an object and the camera is teleported to look at that object by changing the lookfrom and lookat points). Each object has a <code>lookFromLookAt</code> method. It makes a guess of where to put the camera based on the object&rsquo;s bounding box, but this is a guess. Object&rsquo;s can override this method to do a better job.</p>
+
+<p>If you point the camera at a moving object, you point the camera at where the object is at the moment you move the camera. Look at works best with non-moving objects. Use &ldquo;Follow&rdquo; to watch where an object goes.</p>
+
+<h2 id="making-objects-rideable">Making Objects Rideable</h2>
+
+<p>The user interface allows the camera to be placed so that the user &ldquo;rides&rdquo; and object. In order for this to work, the object needs to be defined so that its center is at the origin, and the direction of travel is along the <strong>positive</strong> Z axis.</p>
+
+<p>In riding mode, the object is not drawn (otherwise, you&rsquo;d see the inside of the object). This is done by hiding it.</p>
+
+<p>In a <code>GrObject</code> you set the <code>rideable</code> variable to be an <code>Object3D</code> that has the correct motion (the camera will be placed at the origin of this object&rsquo;s coordinate system, and will face towards its <strong>positive</strong> z axis).</p>
+
+<h2 id="particles">Particles</h2>
+
+<p>To make a particle effect, you can either make each one be a separate shape (triangle or cube), or use a <code>Points</code> object (where each particle is a tiny dot - and then you use a <code>PointsMaterial</code>).</p>
+
+<h2 id="using-models">Using Models</h2>
+
+<p>You are required to use at least one model file. You can find free models all over the web. OBJ is the simplest file format, but it can be problematic. More modern file formats are often more robust.</p>
+
+<p>THREE has loaders for many file formats, however they are not part of the main system. We have included the loader for OBJ files and FBX files with the Graphics Town Repository. We have also provided interfaces to make using these loaders easier within the framework.</p>
+
+<p>If things don&rsquo;t work as expected, be sure to check the console log for errors. Because the loaders are not part of the &ldquo;core&rdquo; of THREE, they often have dependencies that must be loaded separately.</p>
+
+<p>Also, be aware that using a model can be challenging. For one, there are issues that the author may have created the model as a scale or position that isn&rsquo;t convenient for you. Also, there are lots of broken model files around the web. These include incorrect normals, missing parts, or even files that are not valid data.</p>
+
+<h2 id="time-of-day">Time of Day</h2>
+
+<p>The Framework has support for &ldquo;time of day&rdquo; as an extra parameter to the <code>tick</code> method of <code>GrObject</code>. This is for future expansion. Right now, the parameter is not used, and your objects can ignore it.</p>
+
+<h2 id="flying-controls">Flying Controls</h2>
+
+<p>The Framework uses THREE&rsquo;s flying controls. They aren&rsquo;t great, and they aren&rsquo;t documented. Drag the mouse to turn (be careful: if you drag outside the canvas it will miss the mouse up event). WASD to move, Q and E to roll.</p>
+</article>
+
+      
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc level-6 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#some-hints-for-graphics-town">Some Hints for Graphics Town</a>
+<ul>
+<li><a href="#making-behavior">Making Behavior</a></li>
+<li><a href="#object-lookat">Object LookAt</a></li>
+<li><a href="#making-objects-rideable">Making Objects Rideable</a></li>
+<li><a href="#particles">Particles</a></li>
+<li><a href="#using-models">Using Models</a></li>
+<li><a href="#time-of-day">Time of Day</a></li>
+<li><a href="#flying-controls">Flying Controls</a></li>
+</ul></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+  
+  
+  
+</body>
+
+</html>

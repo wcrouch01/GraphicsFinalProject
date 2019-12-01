@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="generator" content="Hugo 0.58.3" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction | CS559: Workbook 11&#43;12</title>
+
+
+<link rel="stylesheet" href="/book.min.6c7317d2e8552a0ac3ea8fd4ba500c3dfb1cc9c74e7afd73eee6d729751fad30.css">
+
+
+
+
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+
+
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="CS559: Workbook 11+12" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body>
+  <input type="checkbox" style="display: none" id="menu-control" />
+  <main class="flex container">
+
+    <aside class="book-menu fixed">
+      <nav>
+<h2 class="book-brand">
+  <a href="">CS559: Workbook 11&#43;12</a>
+</h2>
+
+
+
+
+
+
+    
+  
+  
+  
+    
+    
+  
+
+  <style>
+  nav ul a[href="\2f "] {
+      color: #004ed0;
+  }
+  </style>
+
+<ul>
+<li><a href="/"><strong>Introduction</strong></a></li>
+<li><a href="/docs/hints/">Hints</a></li>
+<li><a href="/for_students/grtown.html">grtown.html</a></li>
+</ul>
+
+
+
+
+
+
+
+</nav>
+
+
+<script>
+(function() {
+  var menu = document.querySelector("aside.book-menu nav");
+  addEventListener("beforeunload", function(event) {
+    localStorage.setItem("menu.scrollTop", menu.scrollTop);
+  });
+  menu.scrollTop = localStorage.getItem("menu.scrollTop");
+})();
+</script>
+
+    </aside>
+
+    <div class="book-page">
+      <header class="flex align-center justify-between book-header">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" alt="Menu" />
+  </label>
+  <strong>Introduction</strong>
+</header>
+
+      
+<article class="markdown">
+
+<h1 id="graphics-town">Graphics Town</h1>
+
+<p>Note: The assignment description is long and complicated. Read it carefully, and check for updates/clarifications.</p>
+
+<p>Assignments 11 and 12 are different than prior assignments. Please read this carefully.</p>
+
+<p>Unlike prior assignments where each assignment was a separate &ldquo;Workbook&rdquo; that was its own GIT repository, Assignments 11 and 12 will have a single GIT repository and a common due date. <strong>You will turn in one repository for both assignments.</strong> In your documentation, you will explain how your program fills the requirements for each of the assignments.</p>
+
+<p>Each assignment has its own requirements and a separate rubric (see below). Each has its own bonus point opportunities. You will receive two grades in Canvas. As far as the &ldquo;drop 2&rdquo; rule, this is two assignments. Each one counts like any other assignment.</p>
+
+<h1 id="overview">Overview</h1>
+
+<p>The goal of this project is to create a town. It has to be a living town, with things moving around in it. We will provide you with a starter framework. But you must add the contents of the town. Your town cannot be a dead place: there must be things moving around in it.</p>
+
+<p>We hesitate to tell you what to do, since students in the past have come up with some really creative things. We&rsquo;ve seen cities with skyscrapers, space cities with flying saucers, tropical islands, a Harry Potter city with flying broomsticks, &hellip; There are gallery pages with some old projects if you want some ideas (see below).</p>
+
+<p>If this sounds like its arbitrarily open-ended, you have the right idea. Clearly, you could make this as fancy as you want. Our goal is to give you the opportunity to demonstrate your competence at writing 3D graphics programs, as well as an opportunity to experiment with some more advanced topics that you think are interesting.</p>
+
+<p>In the process of creating one program that has the town in it, you will complete two assignments. In the first (Assignment 11), you will bring the town to life by making objects in it move. In the second (Assignment 12), you will create enough objects in the town such that it&rsquo;s an interesting place. For each of these parts, there are specific requirements and a grading rubric.</p>
+
+<p>The two assignments are put together into one program, and the pieces are connected. Assignment 11 is about the animation, but it&rsquo;s more interesting to bring things to life if they are situated in an interesting world. Assignment 12 is about the world being interesting and having interesting looking objects (which might be the ones you animated). You will probably want to work on the two things together (not necessarily do one first).</p>
+
+<p>We are calling this two assignments to better fit with the grading scheme of the class. You may view this as one big assignment that has two parts that are graded separately. You will turn in one program, but receive two grades.</p>
+
+<p>You will create your town by building on top of the &ldquo;Graphics Town Framework&rdquo; code that we will provide. This is an extended version of the software framework we have been using for the past several assignments.</p>
+
+<p>All of the requirements are objects that you add to the framework (you should have experience doing this from prior assignments). Some requirements are specific, while others are more broad.</p>
+
+<h2 id="why-is-this-so-complicated">Why is this so complicated?</h2>
+
+<p>The description of this assignment is quite long, and the rules are complicated. This is because we want to give students enough flexibility to do interesting things that are interesting to them, but we also need to set expectations so we can grade things in a consistent manner.</p>
+
+<h1 id="requirements">Requirements</h1>
+
+<p>Your program must have a <code>grtown.html</code> page that has a view of your town that allows the user to explore and see everything. An appropriate interface is provided by the framework. The initial repository you start with provides an empty world that provides the required user interface(s ee Required Features below). You must also provide documentation in the <code>README.md</code> file.</p>
+
+<p>You should not need to change the framework code. You will need to define new object types (with behaviors, through their <code>tick</code> methods), and update the <code>grtown.js</code> file to create the world appropriately by placing objects into the <code>GrWorld</code>. You should be experienced with doing this from prior workbooks.</p>
+
+<p>We put a few sample objects into the world. You may keep them, or remove them (some are intentionally broken - you need to fix them). You cannot count these as objects that you make. You may want to make the groundplane bigger (you give yourself more &ldquo;land&rdquo;), or remove it altogether. Be warned: the framework code computes the initial camera position based on the groundplane, so if you have no groundplane, you will need to give an initial camera configuration.</p>
+
+<p>Your program needs to run at a reasonable frame rate on a testing computer. Don&rsquo;t go too overboard with excessive numbers of objects.</p>
+
+<p><strong>Assignment 11 (Animation) Requirements:</strong> you must have enough moving objects in your world. There must be at least 5 objects moving. There must be at least 3 different &ldquo;behaviors&rdquo; (types of motion). A car driving and a plane flying are 2 different behaviors: even if there are many cars driving and planes flying using those behaviors. You will need to describe the behaviors you implemented in your <code>README.md</code> documentation.</p>
+
+<p>The rubric (see below) defines the specific things you must do. Your grade is based on how many points you accumulate. One point gets you <sup>1</sup>&frasl;<sub>2</sub> letter grade. If you get 7 points, you get an AB. Any points after that count towards bonus points.</p>
+
+<p>There are 4 points that are &ldquo;required&rdquo;. 5 objects moving, 3 types of behaviors, a train track, and a train. You must have a &ldquo;train&rdquo; that moves around a curved track. By &ldquo;train&rdquo; we mean some vehicle that moves on a curved path (where the curved path is drawn). It can be a train, a monorail, a roller coaster, a race car on a twisty race track, or something else. To get full credit (see rubric) the track must be a spline (probably a cardinal spline like workbook 5). You can re-use your 2D train and draw it in 3D (see re-use below).</p>
+
+<p><strong>Assignment 12 (World) Requirements:</strong> your world must be complex enough and visually interesting enough. We will set some minimums to establish expectations, however, we don&rsquo;t want to preclude people from being creative. We will also award points for &ldquo;technical challenges&rdquo;.  There are minimums for the number of different kinds of objects that you have, and we look for the technical challenge of the most interesting of these objects. See the <strong>rubric</strong> for more details. You must also provide pictures of your program.</p>
+
+<h1 id="documentation">Documentation</h1>
+
+<p>You will only receive credit for things that you not only implement, but also document correctly. This includes describing them in the README.md file as well as providing pictures as required.</p>
+
+<p>We also require that you include a few images from your program (as explained in the rubric).</p>
+
+<h2 id="use-re-use-and-attribution">Use, Re-Use and Attribution</h2>
+
+<p>You are encouraged to use pieces from your old workbooks for this assignment. In the past, you&rsquo;ve been using the Graphics Town framework to make houses, cars, shiny objects, amusement park rides, &hellip; You need to make <em>some</em> new stuff, but you are also encouraged to use old stuff as well. The goal is to have lots of stuff.</p>
+
+<p>It is allowable to use an object from someone else&rsquo;s prior assignment provided: (1) it was in their prior assignment (i.e., they didn&rsquo;t make it just for this assignment); (2) you have their permission (you must ask them - even if you find their code on the web); and (3) you must give proper attribution in the README file. You have the course staff&rsquo;s permission (step 2) to use code from your and other students&rsquo; prior assignments. You will not receive &ldquo;technical challenge&rdquo; points for objects that you do not create, but they can contribute to the overall complexity of your world.</p>
+
+<p>If you use code from prior assignments: please give correct attribution. Even if you use your own code (say explicitly in your README &ldquo;I used the house I made for workbook 8&rdquo;). And definitely give attribution to the work of others.</p>
+
+<p>If you use a model or texture (or any other &ldquo;asset&rdquo;) from the web, make sure you have the legal right to use it, and document where it came from when you give attribution. If you borrowed code from a tutorial or reference, please give it attribution as well.</p>
+
+<h1 id="required-features-of-your-program">Required Features of Your Program</h1>
+
+<p>The Graphics Town Framework provides a number of features that make it possible for a user to appreciate a town built in it. You should make sure that these features work in your program. They should work if you use the framework correctly.</p>
+
+<ol>
+<li>The user needs to be able to move around the world in order to explore the town.</li>
+<li>The user needs to be able to quickly look at an object of interest (for example, to look at something of interest without having to find it).</li>
+<li>The user should be able to &ldquo;follow&rdquo; a moving object (so see how it moves around in the world). At least some objects should be followable. In the framework, this requires the <code>rideable</code> property to be set (see the hints).</li>
+<li>The user should be able to &ldquo;ride&rdquo; a moving object (and see the world from that object&rsquo;s point of view). At least some objects should be rideable. In the framework, this requires the <code>rideable</code> property to be set (see the hints).</li>
+</ol>
+
+<p>It is strongly recommended that you use the framework code, as it provides these features. However, should you decide you need to either change the framework, or build your own things from scratch, you must create these features as we need them for grading.</p>
+
+<h1 id="rubric">Rubric</h1>
+
+<p>This serves as an explanation of how we will assess assignments, but also, to suggest ideas. Note: while there are some requirements, we are generally open minded to what you make.</p>
+
+<h2 id="assignment-11-rubric">Assignment 11 Rubric</h2>
+
+<p>Your grade (up to an AB, or 3.5) is figured by counting the number of things that you&rsquo;ve done from this list. Each point is worth <sup>1</sup>&frasl;<sub>2</sub> letter grade. The first four points are <strong>required</strong> - you can only count 3 of the ones after 4 towards the 7 you need to get the full AB grade. However, any of the ones that you do beyond 7 can for bonus points. Also, for many of these, we may award bonus points for particularly well done things.</p>
+
+<ol>
+<li>The framework runs with at least 5 objects showing up and moving.</li>
+<li>At least 3 distinct behaviors are identified in the documentation and visible in the world. Some of your behaviors may be simple (things moving in a circle) - you can still list them, even if they don&rsquo;t count as a complicated.</li>
+<li>There is a train track that is drawn and is a spline. Your train track can be simple (a curve in space), or it can be complicated (like parallel rails with cross ties). Complicated tracks can earn bonus points.</li>
+<li>The train must have an obvious front that faces forward on the track. The train must be &ldquo;rideable&rdquo;. If you don&rsquo;t have a spline track, you can still earn this point for having a train that goes in a circle.</li>
+<li>An object that follows a 3D curved path and banks appropriately. For example, this could be an airplane or a roller coaster.</li>
+<li>A particle effect. For example, fireworks (workbook 2), smoke, fire, a fountain.</li>
+<li>Objects that move to a destination, do some secondary behavior at that destination, and then move to another. For example, your airplane can fly around, land, turn around, take off again. Your train can stop at a station and have people get on and off.</li>
+<li>Shapes that morph into different shapes.</li>
+<li>Key-Framed movements of an articulated figure. For example, people or animals that walk or run.</li>
+<li>A skinned articulated figure (which has to move enough that we can see that it is skinned).</li>
+<li>A driving system. You will see one of these in the examples. This would have multiple vehicles moving in a coordinated fashion (e.g., following roads).</li>
+<li>The &ldquo;train&rdquo; could show evidence of correct arc-length parameterization (e.g., uniformly spaced rail ties, keeps a constant speed despite long and short track segments, &hellip;). Note that in order to demonstrate this, you need to show where the segments are. See Workbook 5.</li>
+<li>Simulated water or cloth. Don&rsquo;t try to do real simulation, but you can try to make procedural movements to have the ripples of water in a pond or a flag waving in the wind.</li>
+<li>Something else that doesn&rsquo;t fit into the descriptions above, but shows that you&rsquo;ve thought about making complex motions. If you&rsquo;re wondering if it&rsquo;s &ldquo;good enough to earn a complexity point&rdquo; ask (on Piazza).</li>
+</ol>
+
+<p>One object can get multiple complexity points. For example, your train could be a roller coaster with a 3D curved track where the cars bank correctly. Or, you could have an airplane that flies in a curved path with banking (1) and then lands and takes off again (3).</p>
+
+<p><strong>Important:</strong> you can only earn points if you (1) describe what you attempted in your documentation and (2) it clearly works as described. The questions in <code>README.md</code> are designed to make this easy.</p>
+
+<h2 id="assignment-12-rubric">Assignment 12 Rubric</h2>
+
+<p><strong>Basic Setup:</strong> (2 points towards grade) the framework runs correctly and the town is visible. The objects of interest can be looked at, and the program runs at a reasonable rate. The different things in the world can be easily identified. The town looks like a coherent world (it&rsquo;s not a bunch of randomly placed objects). If the sample objects are used, they are placed correctly.</p>
+
+<p><strong>Object diversity:</strong> (2 points towards grade, plus bonus points) you need to have enough different types of objects. The minimum is 8 across three categories: &ldquo;buildings&rdquo;, &ldquo;natural elements&rdquo;, and &ldquo;vehicles&rdquo;. These categories are named for towns, so in a wilderness scene or space scene you might have different things. In the wilderness the &ldquo;vehicles&rdquo; might be birds rather than cars and helicopters. In space, you might have asteroids or planets rather than trees. You must also have at least one object with a texture, and at least one object loaded from a model file.</p>
+
+<p>You cannot claim objects that you take from other peoples&rsquo; assignments (e.g., the sample code or borrowing from other people) as part of your 8 objects.</p>
+
+<p><strong>Technical Challenges:</strong> (2 points towards grade, plus bonus points). Here, we want you to list the technically interesting aspects of creating the objects. To get the points, you both need to do something challenging, but also use the technique to make a meaningful object in your world. Many of the techniques are built into THREE, so your challenge is figuring out how to use them. If you want to use something from THREE that is not built in, you will need to include files from THREE that aren&rsquo;t part of the framework.</p>
+
+<ol>
+<li>Curved Surface beyond a basic primitive. Use a subdivision surface or a generalized cylinder in a useful way.</li>
+<li>Environment map. Use an environment map that is correct for an object (not just some random texture).</li>
+<li>A procedural texture in a shader. Again, it must make sense for the object (it can&rsquo;t just be taking a dot shader and applying it to a house).</li>
+<li>Procedurally generated geometry. For example, you could have trees with randomly generated branching structure.</li>
+<li>Point sprites or point billboards (look these up in the THREE documentation). If you combine these with a particle effect (for Assignment 11), you can do very cool things.</li>
+<li>Some two-pass rendering effect (a TV that watches another location, a dynamic reflection map, &hellip;)</li>
+<li>Something else that we didn&rsquo;t think of. If you&rsquo;re in doubt, ask (on Piazza). This is your opportunity to try some technique that we might not get to in class (within reason).</li>
+</ol>
+
+<p>The first two points count towards your grade. More points count as bonus points. Additionally, we will give bonus points for doing things particularly well or making really creative use of techniques.</p>
+
+<p><strong>Subjective Value:</strong> (1 point towards grade, plus bonus points): Is your world interesting enough? In general, if you meet all the requirements (for assignments 11 and 12) and things are cohesive (not just a bunch of objects that don&rsquo;t make sense together), you will get the point towards the grade. We will also award bonus points for really creative, complex, or interesting worlds.</p>
+
+<p>One object can be used for multiple things. You might make an airplane out of a curved surface that reflects the clouds as it flies (multiple technical challenge points, as well as filling animation requirements).</p>
+
+<p>You must include screen shots of your program that show it off. You should have 1-2 pictures where you have positioned the camera to best show someone how cool your world is. You may also include a few (at most 4) pictures that show off specific objects that you don&rsquo;t want us to miss. Place these pictures in the <code>for_student/Pictures</code> directory. You can save them as either <code>.png</code> or <code>.jpg</code> files.</p>
+
+<p><strong>Important:</strong> For object diversity and technical challenges, you must describe what you did in the documentation. <code>README.md</code> will be set up to help you organize this.</p>
+
+<h2 id="bonus-points">Bonus Points</h2>
+
+<p>Both Assignments 11 and 12 have lots of bonus point opportunities. You can earn bonus points for doing more behaviors or technical challenges than required, doing any of these particularly well, and for the overall creativity shown in your assignment.</p>
+
+<p>Because the assignment is open ended, you can potentially earn a lot of bonus points. However, we will only allow you to use <strong>at most 6 per assignment</strong> towards your class grade. While we want to reward cool assignments, we don&rsquo;t want students to try to make up for a semester of not collecting bonus points.</p>
+
+<h1 id="history">History</h1>
+
+<p>The Graphics Town Project has a long history (since 2000), and students have generally liked it over the years. The history is described <a href="http://graphics.cs.wisc.edu/WP/cs559-fall2014/2014/11/07/project-2-graphics-town-framework-code/">on this 2014 page</a>. That page also discusses the old C++ framework code (which you don&rsquo;t have to look at). The assignment is described at the <a href="http://graphics.cs.wisc.edu/WP/cs559-fall2014/2014/11/07/project-2-graphics-town/">2014 Graphics Town Project Page</a>. 2014 was the last year of the C++ version of the assignment.</p>
+
+<p>The most interesting thing about the history is to see what other students have done to inspire you. There is a Gallery for <a href="http://graphics.cs.wisc.edu/WP/cs559-fall2014/2014/12/18/2014-project-gallery/">2014</a>. Remember, these were different assignments: and students didn&rsquo;t have a high level API (like THREE) to work with.</p>
+
+<p>The &ldquo;2015 Graphics Town Project&rdquo; is hardly graphics town - it&rsquo;s more graphics table. <a href="http://graphics.cs.wisc.edu/WP/cs559-fall2015/2015/10/15/project-program-group-2-graphics-town/">2015 Graphics Town</a></p>
+
+<p>Last semester was the first time we were using the high-level API THREE.js. You can find examples of assignments that students have done for graphics town last semester <a href="http://graphics.cs.wisc.edu/WP/cs559-sp2019/graphics-town-gallery/">here</a>.
+In years prior to that, doing &ldquo;basic&rdquo; things (like adding texture maps or loading model files) was technically challenging. Now, this is built in to the API. Many things we have asked students to do in the past (e.g., environment maps, generalized cylinders) do not need to be implemented since they already exist in THREE.</p>
+
+<p>Note: unlike in previous years, we are <strong>not</strong> allowing students to work in pairs. This semester, you must do this assignment individually.</p>
+
+<h1 id="getting-started">Getting Started</h1>
+
+<p>Read through the assignment, and plan what you want to make.</p>
+
+<p>There is also a page of <a href="/docs/hints/">hints</a>.</p>
+</article>
+
+      
+
+      
+    </div>
+
+    
+  
+
+  <aside class="book-toc level-6 fixed">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#graphics-town">Graphics Town</a></li>
+<li><a href="#overview">Overview</a>
+<ul>
+<li><a href="#why-is-this-so-complicated">Why is this so complicated?</a></li>
+</ul></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#documentation">Documentation</a>
+<ul>
+<li><a href="#use-re-use-and-attribution">Use, Re-Use and Attribution</a></li>
+</ul></li>
+<li><a href="#required-features-of-your-program">Required Features of Your Program</a></li>
+<li><a href="#rubric">Rubric</a>
+<ul>
+<li><a href="#assignment-11-rubric">Assignment 11 Rubric</a></li>
+<li><a href="#assignment-12-rubric">Assignment 12 Rubric</a></li>
+<li><a href="#bonus-points">Bonus Points</a></li>
+</ul></li>
+<li><a href="#history">History</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+</ul>
+</nav>
+  </aside>
+
+
+
+  </main>
+  
+  
+  
+</body>
+
+</html>
