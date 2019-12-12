@@ -99,6 +99,11 @@ function grtown() {
          world.add(new Tree({x:i + 3.5, y:-0.2,z:14,s:0.5,r:Math.PI/2,t:(rand)}));
          world.add(new SimpleHouse({x:i, z:-20}));
          world.add(new SimpleHouse({x:i, z: 17}));
+         if(i % 2 == 0)
+         {
+            world.add(new Person({x:i - 0.5,z:-18.5, s:0.5}));
+            world.add(new Person({x:i - 0.5 ,z:17.5, s:0.5, r:Math.PI}));
+         }
      }
 
      //PARK
@@ -109,7 +114,7 @@ function grtown() {
      world.add(new GrAdvancedSwing({x:4,z:-10}, Math.PI/2));
      world.add(new GrAdvancedSwing({x:0,z:-10}, Math.PI/2));
      world.add(new GrCarousel({x:12, z:0, size:0.7}));
-     world.add(new Person({x:5,z:5, s:0.5}));
+     
 
      //COPER
      world.add(new Helipad(-5.5,0,-18.5));

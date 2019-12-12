@@ -34,14 +34,7 @@ export class Person extends Loaders.FbxGrObject {
       this.objects[0].position.z = params.z ? Number(params.z) : 0;
       this.objects[0].scale.set(params.s ? Number(params.s) : 0.8,params.s ? Number(params.s) : 0.8, params.s ? Number(params.s) : 0.8);
       this.objects[0].rotateY(params.r ? Number(params.r) : 0);
-      this.count = 0
-      this.speed1 = params.sp1 ? Number(params.sp1) : 0.05;
-      this.speed2 = params.sp2 ? Number(params.sp2) : 0.05;
-      this.direction = params.d ? Number(params.d) : 1;
-      this.ridePoint = new T.Object3D();
-      this.ridePoint.translateY(0.5);
-      this.objects[0].add(this.ridePoint);
-      this.rideable = this.ridePoint;
+    
   }
 }
 let busObCtr = 0;

@@ -75,7 +75,7 @@ O.8 The Helicopter
 
 Object Diversity: list one object in your world that is loaded from a model file (e.g., OBJ or FBX). Remember to give proper attribution in your README file, and to include the object in your repository.
 
-The Buses are loaded in as FBX files.
+The Buses and People are loaded in as FBX files.
 
 Object Diversity: list one of each category
 Building: Tall Buildings
