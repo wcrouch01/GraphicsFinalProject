@@ -20,7 +20,7 @@ export class ShinySculpture extends GrObject {
      * 
      * @param {GrWorld} world 
      */
-    constructor(world) {
+    constructor(world, params={}) {
         let group = new T.Group();
         super("ShinySculpture",group);
 
@@ -35,6 +35,9 @@ export class ShinySculpture extends GrObject {
                 envMap : this.cubecam.renderTarget.texture
             });
         this.sculpture = new T.Mesh(this.sculptureGeom, this.sculptureMaterial);
+        this.sculpture.position.x = params.x ? Number(params.x) : 0;
+        this.sculpture.position.y = params.y ? Number(params.y) : 0.0;
+        this.sculpture.position.z = params.z ? Number(params.z) : 0;
         group.add(this.cubecam);
         group.add(this.sculpture);
 

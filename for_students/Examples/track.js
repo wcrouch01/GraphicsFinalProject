@@ -19,6 +19,7 @@ import * as Loaders from "../Framework/loaders.js";
  * position (given their U value). 
  * They can also ask for the direction vector.
  */
+
 export class CircularTrack extends GrObject {
     constructor(params={}) {
         let radius = params.radius || 6;
@@ -99,5 +100,160 @@ export class TrackCar extends Loaders.FbxGrObject {
         let zAngle = Math.atan2(dir[2],dir[0]);
         // turn the object so the Z axis is facing in that direction
         this.objects[0].rotation.y = -zAngle - Math.PI/2;
+    }
+}
+export class TrackTrain extends GrObject{
+    constructor(track, params={})
+    {
+        
+        const train = new T.Group();
+        //Materials
+        const body = new T.MeshStandardMaterial( {
+            color: 0xff3333, // red
+            flatShading: true,
+          } );
+        
+          // just as with textures, we need to put colors into linear color space
+          body.color.convertSRGBToLinear();
+        
+          const detail = new T.MeshStandardMaterial( {
+            color: 0x333333, // darkgrey
+            flatShading: true,
+          } );
+        
+          detail.color.convertSRGBToLinear();
+          //Geometries
+          const nose = new T.CylinderBufferGeometry( 0.75, 0.75, 3, 12 );
+      
+          const cabin = new T.BoxBufferGeometry( 2, 2.25, 1.5 );
+        
+          const chimney = new T.CylinderBufferGeometry( 0.3, 0.1, 0.5 );
+        
+          // we can reuse a single cylinder geometry for all 4 wheels
+          const wheel = new T.CylinderBufferGeometry( 0.4, 0.4, 1.75, 16 );
+          wheel.rotateX( Math.PI / 2 );
+        //const materials = this.createMaterials();
+        //const geometries = this.createGeometries();
+        const noseA = new T.Mesh( nose, body );
+    noseA.rotation.z = Math.PI / 2;
+  
+    noseA.position.x = -1;
+  
+    const cabinA = new T.Mesh( cabin, body );
+    cabinA.position.set( 1.5, 0.4, 0 );
+  
+    const chimneyA = new T.Mesh( chimney, detail );
+    chimneyA.position.set( -2, 0.9, 0 );
+  
+    const smallWheelRear = new T.Mesh( wheel, detail );
+    smallWheelRear.position.set( 0, -0.5, 0 );
+  
+    const smallWheelCenter = smallWheelRear.clone();
+    smallWheelCenter.position.x = -1;
+  
+    const smallWheelFront = smallWheelRear.clone();
+    smallWheelFront.position.x = -2;
+  
+    const bigWheel = smallWheelRear.clone();
+    bigWheel.scale.set( 2, 2, 1.25 );
+    bigWheel.position.set( 1.5, -0.1, 0 );
+  
+    train.add(
+  
+      noseA,
+      cabinA,
+      chimneyA,
+  
+      smallWheelRear,
+      smallWheelCenter,
+      smallWheelFront,
+      bigWheel,
+  
+    );
+    //train.position.set(0,1,0);
+    train.position.x = params.x ? Number(params.x) : 0;
+    train.position.y = params.y ? Number(params.y) : 1.5;
+    train.position.z = params.z ? Number(params.z) : 0;
+    train.scale.set(params.s ? Number(params.s) : 0.8,params.s ? Number(params.s) : 0.8, params.s ? Number(params.s) : 0.8);
+    train.rotateY(params.r ? Number(params.r) : 0);
+    super("train",train);
+    this.track = track;
+    this.u = 0;
+    // the fbx loader puts the car on the ground - we need a ride point above the ground
+    this.ridePoint = new T.Object3D();
+    this.ridePoint.translateY(0.5);
+    this.objects[0].add(this.ridePoint);
+    this.rideable = this.ridePoint;
+    }
+    createMaterials(){
+
+        const body = new T.MeshStandardMaterial( {
+            color: 0xff3333, // red
+            flatShading: true,
+          } );
+        
+          // just as with textures, we need to put colors into linear color space
+          body.color.convertSRGBToLinear();
+        
+          const detail = new T.MeshStandardMaterial( {
+            color: 0x333333, // darkgrey
+            flatShading: true,
+          } );
+      
+        detail.color.convertSRGBToLinear();
+      
+        return {
+      
+          body,
+          detail,
+      
+        };
+      
+      }
+      
+      createGeometries() {
+      
+        const nose = new T.CylinderBufferGeometry( 0.75, 0.75, 3, 12 );
+      
+        const cabin = new T.BoxBufferGeometry( 2, 2.25, 1.5 );
+      
+        const chimney = new T.CylinderBufferGeometry( 0.3, 0.1, 0.5 );
+      
+        // we can reuse a single cylinder geometry for all 4 wheels
+        const wheel = new T.CylinderBufferGeometry( 0.4, 0.4, 1.75, 16 );
+        wheel.rotateX( Math.PI / 2 );
+      
+      
+        return {
+          nose,
+          cabin,
+          chimney,
+          wheel,
+        };
+      
+      }
+/*
+    constructor(track) {
+        
+        super({fbx:"./Examples/Assets/teeny racecar.fbx",norm:2.0,name:"Track Car"});
+        this.track = track;
+        this.u = 0;
+        // the fbx loader puts the car on the ground - we need a ride point above the ground
+        this.ridePoint = new T.Object3D();
+        this.ridePoint.translateY(0.5);
+        this.objects[0].add(this.ridePoint);
+        this.rideable = this.ridePoint;
+    }
+    */
+    tick(delta,timeOfDay) {
+        this.u += delta / 2000;
+        let pos = this.track.eval(this.u);
+        this.objects[0].position.set(pos[0],pos[1] + 0.5,pos[2]);
+        let dir = this.track.tangent(this.u);
+        // since we can't easily construct the matrix, figure out the rotation
+        // easy since this is 2D!
+        let zAngle = Math.atan2(dir[2],dir[0]);
+        // turn the object so the Z axis is facing in that direction
+        this.objects[0].rotation.y = -zAngle; //- Math.PI/2;
     }
 }
