@@ -5,19 +5,19 @@ See <https://graphics.cs.wisc.edu/WP/cs559-sp2019/workbooks/#README_files>
 
 ## please answer these first three required questions "inline" (as in the instructions)
 
-Name:
+Name: William Crouch
 
-WiscID:
+WiscID: 9075092917
 
-GitHub Login:
+GitHub Login: wcrouch01
 
 ## please answer these next (optional) questions on a line following the questions
 
-Attributions:
+Attributions: Previous assignments and the object files listed below
 
-Parts of the Assignment you did (or did not) do:
+Parts of the Assignment you did (or did not) do: Most of the parts
 
-Did you do any bonus parts?
+Did you do any bonus parts? Yes, see below
 
 Did you add any texture or object files?
 Stage: https://www.cgtrader.com/items/1030018/download-page
@@ -85,6 +85,7 @@ Vehicle (object meant to move): Bus
 Technical Challenges: For each technical challenge you attempted (from the list of 7), give the number of the challenge, a description of what you did, and a description of the object that it was used on. What objects should we "look at".
 7: I added a skybox to the world. The skybox is a scaled version of the entire world. Its very visually appealing because you get to see everything else massive compared to you.
 4: Tree branches are generated randomly for the small trees.
+
 Pictures: confirm that you placed the required pictures in the Pictures directory.
 The required picutures are in the Pictures folder.
 Consent: do you agree to allow us to use your pictures in future gallery pages? (please answer Yes or No)
