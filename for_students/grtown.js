@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
-// @ts-check
+// @ts-nocheck
+
 
 /**
  * Graphics Town Framework - "Main" File
@@ -99,10 +100,10 @@ function grtown() {
          world.add(new Tree({x:i + 3.5, y:-0.2,z:14,s:0.5,r:Math.PI/2,t:(rand)}));
          world.add(new SimpleHouse({x:i, z:-20}));
          world.add(new SimpleHouse({x:i, z: 17}));
-         if(i % 2 == 0)
+         if(i % 2 == 1)
          {
-            world.add(new Person({x:i - 0.5,z:-18.5, s:0.5}));
-            world.add(new Person({x:i - 0.5 ,z:17.5, s:0.5, r:Math.PI}));
+            //world.add(new Person({x:i - 0.5,z:-18.5, s:0.5}));
+            //world.add(new Person({x:i - 0.5 ,z:17.5, s:0.5, r:Math.PI}));
          }
      }
 
@@ -179,31 +180,66 @@ function grtown() {
 
     /** EXAMPLES - end - things after this should stay                      */
     /********************************************************************** */
+    var materials = [], parameters;
+    var vertices = [];
+    var geometry = new T.BufferGeometry();
+				var textureLoader = new T.TextureLoader();
+				var sprite1 = textureLoader.load( '/for_students/Images/snowflake1.png' );
+				var sprite2 = textureLoader.load( '/for_students/Images/snowflake2.png' );
+				var sprite3 = textureLoader.load( '/for_students/Images/snowflake3.png' );
+				var sprite4 = textureLoader.load( '/for_students/Images/snowflake4.png' );
+				var sprite5 = textureLoader.load( '/for_students/Images/snowflake5.png' );
+				for ( var i = 0; i < 10000; i ++ ) {
+					var x = Math.random() * 2000 - 1000;
+					var y = Math.random() * 2000 - 1000;
+					var z = Math.random() * 2000 - 1000;
+					vertices.push( x, y, z );
+        }
+                
+				geometry.addAttribute( 'position', new T.Float32BufferAttribute( vertices, 3 ) );
+				parameters = [
+					[[ 1.0, 0.2, 0.5 ], sprite2, 20 ],
+					[[ 0.95, 0.1, 0.5 ], sprite3, 15 ],
+					[[ 0.90, 0.05, 0.5 ], sprite1, 10 ],
+					[[ 0.85, 0, 0.5 ], sprite5, 8 ],
+					[[ 0.80, 0, 0.5 ], sprite4, 5 ]
+        ];
+   
+				for (var i = 0; i < parameters.length; i ++ ) {
+					var color = parameters[i][ 0 ];
+					var sprite = parameters[ i ][ 1 ];
+					var size = parameters[ i ][ 2 ];
+					materials[i] = new T.PointsMaterial( {size: size, map: sprite,blending: T.AdditiveBlending, depthTest: false, transparent: true } );
+                    materials[ i ].color.setHSL( color[ 0 ], color[ 1 ], color[ 2 ] );
+					var particles = new T.Points( geometry, materials[ i ] );
+					particles.rotation.x = Math.random() * 6;
+					particles.rotation.y = Math.random() * 6;
+					particles.rotation.z = Math.random() * 6;
+                    world.scene.add( particles );
+                }
 
     // build and run the UI
-    world.scene.background = new T.CubeTextureLoader().load( [
+   /* world.scene.background = new T.CubeTextureLoader().load( [
+        '/for_students/Images/snowflake1.png', 
+        '/for_students/Images/snowflake1.png' ,
+        '/for_students/Images/snowflake1.png' ,
+        '/for_students/Images/snowflake1.png' ,
+        '/for_students/Images/snowflake1.png' ,
+        '/for_students/Images/snowflake1.png' ,
+        '/for_students/Images/snowflake1.png' 
         /*
-        '/Images/nevada_bk.jpg',
-        '/Images/nevada_up.jpg',
-        '/Images/nevada_ft.jpg',
-        '/Images/nevada_dn.jpg',
-        '/Images/nevada_rt.jpg',
-        '/Images/nevada_lf.jpg'
-        */
-       /*
-       '/Images/hills_bk.tga',
-      '/Images//hills_up.tga',
-      '/Images//hills_ft.tga',
-      '/Images//hills_dn.tga',
-      '/Images//hills_rt.tga',
-      '/Images//hills_lf.tga'
+       '/for_students//Images/hills_bk.png',
+      '/for_students//Images//hills_up.png',
+      '/for_students//Images//hills_ft.png',
+      '/for_students//Images//hills_dn.png',
+      '/for_students//Images//hills_rt.png',
+      '/for_students//Images//hills_lf.png'
       */
-        ] );
+    //    ] );
     // only after all the objects exist can we build the UI
     // @ts-ignore       // we're sticking a new thing into the world
     world.ui = new WorldUI(world);
     // now make it go!
-    
     world.go();
 }
 Helpers.onWindowOnload(grtown);

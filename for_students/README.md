@@ -83,7 +83,7 @@ Natural Element: Tree
 Vehicle (object meant to move): Bus
 
 Technical Challenges: For each technical challenge you attempted (from the list of 7), give the number of the challenge, a description of what you did, and a description of the object that it was used on. What objects should we "look at".
-7: I added a skybox to the world. The skybox is a scaled version of the entire world. Its very visually appealing because you get to see everything else massive compared to you.
+5: I added a Point Sprites to the world as snowflakes. They also look like stars when you look out into the distance so it has a multipurpose effect. The implementation was based off the three documentation
 4: Tree branches are generated randomly for the small trees.
 
 Pictures: confirm that you placed the required pictures in the Pictures directory.
